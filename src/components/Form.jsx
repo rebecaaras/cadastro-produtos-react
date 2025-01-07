@@ -1,6 +1,6 @@
 export default function Form() {
   return (
-    <form action="#" method="POST" className="space-y-5">
+    <form action="#" method="POST" className="space-y-5 w-[80vw]">
       <h2 className="text-center font-bold">Cadastro de Produtos</h2>
       <input
         type="text"
