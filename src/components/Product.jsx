@@ -1,9 +1,10 @@
 import { Trash2, Pencil, ChevronRight } from 'lucide-react';
 
 export default function Product(props) {
-  const { name, price, description, isAvailable } = props;
+  const { name, price, description, isAvailable, productId} = props;
+
   return (
-    <div className="flex  flex-row justify-between mt-1 w-full py-2 px-2 bg-[#ced8e3] rounded-md sm:text-sm">
+    <li key={productId} className="flex  flex-row justify-between mt-1 w-full py-2 px-2 bg-[#ced8e3] rounded-md sm:text-sm">
       <span className='flex flex-row items-center'>
         <ChevronRight size={22}/>
         <h3>{name}</h3>
@@ -14,8 +15,7 @@ export default function Product(props) {
             <Pencil size={18}/>
             <Trash2 size={18}/>
         </span>
-
       </span>
-    </div>
+    </li>
   );
 }
