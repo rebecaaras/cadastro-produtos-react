@@ -15,6 +15,11 @@ function App() {
   const addNewProduct = (e) => {
     e.preventDefault(); //previne que a página recarregue quando o form é enviado
 
+    if (!name || !description || !price) {
+      alert("Preencha as informações do produto para poder cadastrá-lo!");
+      return
+    }
+
     //Create a new product
     const newProduct = {
       id: productId++,
@@ -25,15 +30,15 @@ function App() {
     };
 
     //Update the products list
-    setProducts(([...products, newProduct]));
+    setProducts([...products, newProduct]);
 
     //Clear the form
     setName("");
     setDescription("");
     setPrice("");
     setIsAvailable("");
-    
-    console.log("Novo produto cadastrado!")
+
+    console.log("Novo produto cadastrado!");
   };
 
   return (
@@ -81,7 +86,10 @@ function App() {
             <div>
               <span>O produto está disponível?</span>
               <div className="flex flex-row items-center justify-between w-1/2 py-2">
-                <label htmlFor="available" className="flex items-center space-x-2">
+                <label
+                  htmlFor="available"
+                  className="flex items-center space-x-2"
+                >
                   <input
                     type="radio"
                     id="available"
@@ -94,7 +102,10 @@ function App() {
                   />
                   <span className="text-sm">Sim</span>
                 </label>
-                <label htmlFor="available" className="flex items-center space-x-2">
+                <label
+                  htmlFor="available"
+                  className="flex items-center space-x-2"
+                >
                   <input
                     type="radio"
                     id="unavailable"
