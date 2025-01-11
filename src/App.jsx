@@ -7,7 +7,7 @@ function App() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0.0);
-  const [isAvailable, setIsAvailable] = useState("");
+  const [isAvailable, setIsAvailable] = useState("sim");
   const [products, setProducts] = useState([]);
 
   let productId = 0;
@@ -36,7 +36,7 @@ function App() {
     setName("");
     setDescription("");
     setPrice("");
-    setIsAvailable("");
+    setIsAvailable("sim");
 
     console.log("Novo produto cadastrado!");
   };
@@ -94,7 +94,7 @@ function App() {
                     type="radio"
                     id="available"
                     name="availability"
-                    value="true"
+                    value="sim"
                     onChange={(e) => setIsAvailable(e.target.value)}
                     required
                     checked
@@ -110,7 +110,7 @@ function App() {
                     type="radio"
                     id="unavailable"
                     name="availability"
-                    value="false"
+                    value="não"
                     onChange={(e) => setIsAvailable(e.target.value)}
                     required
                     className="w-4 h-4 border-gray-300 focus:ring-green-500 focus:ring-2"
@@ -133,7 +133,7 @@ function App() {
           <ProductsList>
             {products.map((product) => (
               <Product
-                key={product.id}
+                id={product.id}
                 name={product.name}
                 price={product.price}
                 description={product.description}
