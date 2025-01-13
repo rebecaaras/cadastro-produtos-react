@@ -10,8 +10,6 @@ function App() {
   const [isAvailable, setIsAvailable] = useState("sim");
   const [products, setProducts] = useState([]);
 
-  let productId = 0;
-
   const addNewProduct = (e) => {
     e.preventDefault(); //previne que a página recarregue quando o form é enviado
 
@@ -22,7 +20,6 @@ function App() {
 
     //Create a new product
     const newProduct = {
-      id: productId++,
       name,
       description,
       price,
@@ -31,14 +28,13 @@ function App() {
 
     //Update the products list
     setProducts([...products, newProduct]);
-
     //Clear the form
     setName("");
     setDescription("");
     setPrice("");
     setIsAvailable("sim");
 
-    console.log("Novo produto cadastrado!");
+    console.log('Novo produto cadastrado!');
   };
 
   return (
@@ -133,7 +129,6 @@ function App() {
           <ProductsList>
             {products.map((product) => (
               <Product
-                id={product.id}
                 name={product.name}
                 price={product.price}
                 description={product.description}
