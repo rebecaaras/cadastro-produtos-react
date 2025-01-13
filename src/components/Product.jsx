@@ -10,11 +10,11 @@ export default function Product(props) {
   }
 
   return (
-    <li key={1} className="w-full bg-[#ced8e3] mb-1 py-2 px-2 rounded-md sm:text-sm mr-1">
+    <li key={1} className="w-full bg-[#ced8e3] mb-2 py-2 px-2 rounded-md sm:text-sm mr-1">
       <div className='flex  flex-row justify-between font-semibold'>
         <span className='flex flex-row items-center justify-center hover:cursor-pointer' onClick={() => setCollapsed(!collapsed)}>
           { collapsed ? 
-            <ChevronRight size={22}/> :  <ChevronRight size={22} className="rotate-90"/>
+            <ChevronRight size={22}/> : <ChevronRight size={22} className="rotate-90"/>
           }
           <h3>{name}</h3>
         </span>
