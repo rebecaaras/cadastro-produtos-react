@@ -1,5 +1,5 @@
+import { ArrowUpDown } from "lucide-react";
 import Form from "./components/Form";
-import ProductsList from "./components/ProductsList";
 import Product from "./components/Product";
 import { useState } from "react";
 
@@ -36,6 +36,11 @@ function App() {
 
     console.log('Novo produto cadastrado!');
   };
+
+  const sortProducts = () => {
+    products.sort((a, b) => a.price - b.price);
+    setProducts([...products])
+  }
 
   return (
     <main className="px-20 bg-[#000d0d] min-h-screen text-slate-300 flex items-center justify-center">
@@ -126,17 +131,28 @@ function App() {
           </Form>
         </div>
         <div className="w-3/5 flex p-4 rounded-[10px] bg-slate-200 text-slate-900">
-          <ProductsList>
-            {products.map((product) => (
-              <Product
-                name={product.name}
-                price={product.price}
-                description={product.description}
-                isAvailable={product.isAvailable}
-              />
-            ))}
-            {/* New products will be appended here */}
-          </ProductsList>
+          {/* Products List */}
+          <div className="w-full">
+            <h3 className="font-bold w-full text-center">Lista de Produtos</h3>
+            <div className="flex justify-end mb-2 mr-[5px]">
+              <button 
+                className="flex justify-center w-[145px] p-[2px] py-[2px] rounded-md bg-[#ced8e3] border-[2px] border-[#ced8e3] hover:border-slate-700 hover:bg-slate-100 text-sm"
+                onClick={sortProducts}>
+                <ArrowUpDown size={14}/>
+              </button>
+            </div>
+            <ul className="flex overflow-y-auto flex-wrap max-h-[80%]" id="product-list">
+              {/* New products will be appended here */}
+              {products.map((product) => (
+                  <Product
+                    name={product.name}
+                    price={product.price}
+                    description={product.description}
+                    isAvailable={product.isAvailable}
+                  />
+                ))}
+            </ul>
+          </div>
         </div>
       </div>
     </main>
