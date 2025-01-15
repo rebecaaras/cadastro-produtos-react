@@ -1,7 +1,7 @@
-import { ArrowUpDown } from "lucide-react";
 import Form from "./components/Form";
 import Product from "./components/Product";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import ProductsList from "./components/ProductsList";
 
 function App() {
   const [name, setName] = useState("");
@@ -10,12 +10,27 @@ function App() {
   const [isAvailable, setIsAvailable] = useState("sim");
   const [products, setProducts] = useState([]);
 
+  // Carregar produtos do localStorage ao iniciar
+  useEffect(() => {
+    const storedProducts = localStorage.getItem("products");
+    if (storedProducts) {
+      setProducts(JSON.parse(storedProducts)); // Carrega produtos se existirem
+    }
+  }, []);
+
+  // Atualizar o localStorage sempre que os produtos mudarem
+  useEffect(() => {
+    if (products.length > 0) {
+      localStorage.setItem("products", JSON.stringify(products)); // Salva produtos no localStorage
+    }
+  }, [products]);
+
   const addNewProduct = (e) => {
     e.preventDefault(); //previne que a página recarregue quando o form é enviado
 
     if (!name || !description || !price) {
       alert("Preencha as informações do produto para poder cadastrá-lo!");
-      return
+      return;
     }
 
     //Create a new product
@@ -34,17 +49,13 @@ function App() {
     setPrice("");
     setIsAvailable("sim");
 
-    console.log('Novo produto cadastrado!');
+    console.log("Novo produto cadastrado!");
   };
-
-  const sortProducts = () => {
-    products.sort((a, b) => a.price - b.price);
-    setProducts([...products])
-  }
 
   return (
     <main className="px-20 bg-[#000d0d] min-h-screen text-slate-300 flex items-center justify-center">
       <div className="flex flex-row border-slate-300 border-[2px] rounded-[12px] w-full h-96">
+        {/* Tela da esquerda */}
         <div className="w-2/5 flex justify-center justify-start p-4">
           <Form>
             <input
@@ -130,29 +141,9 @@ function App() {
             </button>
           </Form>
         </div>
+        {/* Tela da direita */}
         <div className="w-3/5 flex p-4 rounded-[10px] bg-slate-200 text-slate-900">
-          {/* Products List */}
-          <div className="w-full">
-            <h3 className="font-bold w-full text-center">Lista de Produtos</h3>
-            <div className="flex justify-end mb-2 mr-[5px]">
-              <button 
-                className="flex justify-center w-[145px] p-[2px] py-[2px] rounded-md bg-[#ced8e3] border-[2px] border-[#ced8e3] hover:border-slate-700 hover:bg-slate-100 text-sm"
-                onClick={sortProducts}>
-                <ArrowUpDown size={14}/>
-              </button>
-            </div>
-            <ul className="flex overflow-y-auto flex-wrap max-h-[80%]" id="product-list">
-              {/* New products will be appended here */}
-              {products.map((product) => (
-                  <Product
-                    name={product.name}
-                    price={product.price}
-                    description={product.description}
-                    isAvailable={product.isAvailable}
-                  />
-                ))}
-            </ul>
-          </div>
+          <ProductsList products = {products} setProducts = {setProducts}/>
         </div>
       </div>
     </main>
