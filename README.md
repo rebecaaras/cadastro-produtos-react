@@ -8,16 +8,16 @@ Stack utilizada:
 ## Demonstração
 
 <figure>
-  <img src="./images/preview-gif.gif" alt="half-desktop preview"/>
-  <figcaption>Cadastro de produtos</figcaption>
-</figure>
-<figure>
-  <img src="./images/preview-1.png" alt="mobile preview"/>
+  <img src="./images/preview-1.png"/>
   <figcaption>Tela inicial</figcaption>
 </figure>
 <figure>
-  <img src="./images/preview-2.png" alt="mobile preview"/>
+  <img src="./images/preview-2.png"/>
   <figcaption>Produtos cadastrados</figcaption>
+</figure>
+<figure>
+  <img src="./images/preview-gif.gif" height="411" width="533"/>
+  <figcaption>Cadastro de produtos</figcaption>
 </figure>
 
 ## Funcionalidades
